@@ -1,0 +1,439 @@
+{
+  "info": {
+    "_postman_id": "08a9f5f3-03ef-4dc6-85e5-8111e120e7ba",
+    "name": "BookStore",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44884462",
+    "_collection_link": "https://go.postman.co/collection/44884462-08a9f5f3-03ef-4dc6-85e5-8111e120e7ba?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "books",
+      "item": [
+        {
+          "name": "create one book",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " { \"title\":\"lbook1\", \"author\":\"mahmoud\", \"year\":1990, \"geners\":[\r\n    \"fatnasy\" , \"adventure\"\r\n ] }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localhost}}/books",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create multi books",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"books\":[\r\n         { \"title\":\"book2\", \"author\":\"mohamed\", \"year\":1890, \"geners\":[\r\n    \"sports\" , \"horror\"\r\n ] } ,  { \"title\":\"book3\", \"author\":\"ali\", \"year\":1790, \"geners\":[\r\n    \"history\" , \"romance\"\r\n ] },\r\n  { \"title\":\"book4\", \"author\":\"emad\", \"year\":1690, \"geners\":[\r\n    \"history\" , \"romance\"\r\n ] }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localhost}}/books/batch",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "batch"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update book",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"geners\": [\"horror\" , \"history\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localhost}}/books/:title",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                ":title"
+              ],
+              "variable": [
+                {
+                  "key": "title",
+                  "value": "book1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find book by title(query)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localhost}}/books/title?title=book1",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "title"
+              ],
+              "query": [
+                {
+                  "key": "title",
+                  "value": "book1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find books by year",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localhost}}/books/year?from=1800&to=1990",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "year"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "1800"
+                },
+                {
+                  "key": "to",
+                  "value": "1990"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find books by gener",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/books/gener?gener=horror",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "gener"
+              ],
+              "query": [
+                {
+                  "key": "gener",
+                  "value": "horror"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get books sorted by year asc limit 3 skip 2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/books/skip-limit",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "skip-limit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Books Before spasific year",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/books/?year=2000",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "year",
+                  "value": "2000"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get books sorted by aggregiation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/books/aggregiate",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "aggregiate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aggregiate2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/books/aggregiate2",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "aggregiate2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aggregiate3",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/books/aggregiate3",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "aggregiate3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aggregiate4",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/books/aggregiate4",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "aggregiate4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aggregiat5",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/books/aggregiate5",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "books",
+                "aggregiate5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "athores",
+      "item": [
+        {
+          "name": "create author collection",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"name\":\"mahmoud\", \"nationality\":\"egyptian\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localhost}}/collection/authors",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "collection",
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "collections",
+      "item": [
+        {
+          "name": "create logs collection",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/collection/logs",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "collection",
+                "logs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "creat title index on books collection",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{localhost}}/collection/books/index",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "collection",
+                "books",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "logs",
+      "item": [
+        {
+          "name": "create log",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"book_id\":1,\r\n    \"action\" :\"buy\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localhost}}/logs",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "logs"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
